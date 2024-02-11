@@ -3,9 +3,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-wrap:pretty;
 }
 body{
-    height: 100vh;
+   
     background:
     radial-gradient(
       circle at 50% 0,
@@ -29,7 +30,7 @@ body{
 /*nav-bar*/
 ul{
     display: flex;
-    height: 100px;
+    height: auto;
     gap: 10px;
     justify-content:end;
     align-items: center;
@@ -42,10 +43,27 @@ h1{
     color: white;
 }
 
+h2{
+  
+}
+
+section.instrucciones{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    background: greenyellow;
+    
+}
+main{
+    overflow: hidden;
+
+}
+
 .item-logo{
     margin-right: auto; 
     
 }
+
 
 li a{
     text-decoration-line: none;
@@ -80,6 +98,12 @@ nav li:hover{
     border-width: 4px;
     border-radius: 5%;
     border-color:white;
+    caret-color:white;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
     
 }
 
