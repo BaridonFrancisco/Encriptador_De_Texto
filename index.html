@@ -21,10 +21,18 @@
     <main>
         <br>
         <section class="instrucciones">
-            <div><h2>Instrucciones</h2>
-                <p>ingrese el texto a encriptar o desencriptar, luego presione alguno de los botones.No se permite <strong>caracteres especiales ni letras con acento</strong>
-                 los caratecteres con mayuscula se toman como minusculas ya que no se permiten</p></div>
-
+            <div>
+                <h2>Instrucciones</h2>
+                <p>Ingrese el texto a encriptar o desencriptar , luego presione alguno de los botones para que los botones funcionen debe tener texto el campo.</p></div>
+            <div>
+                <h3>Reglas</h3>
+                <ul class="rules">
+                    <li><p>Solo letras minusculas.</p></li>
+                    <li><p>No se permite mayuscula,en ese caso seran convertidas a minusculas.</p></li>
+                    <li><p>No se permiten caracteres especiales.</p></li>
+                    <li><p>No se permiten letras con acentos.</p></li>
+                </ul>
+            </div>
         </section>
         <form action="">
             <div class="enc">
@@ -36,8 +44,8 @@
                 <button type="button"><img src="copy-two-paper-sheets-interface-symbol.png" alt="" width="35px" height="35px"></button>
             </div>
             <section class="botones">
-                <button class="encriptar" type="button">Encriptar</button>
-                <button class="desencriptar" type="button">Desencriptar</button>
+                <button class="encriptar" type="button" disabled>Encriptar</button>
+                <button class="desencriptar" type="button" disabled>Desencriptar</button>
                 <button class="borrar" type="button">Borrar</button>
             </section>
         </form>

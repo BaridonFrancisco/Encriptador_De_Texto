@@ -25,9 +25,9 @@ body{
       ) beige;
      border-radius: 50%;
 
-}   
-
-/*nav-bar*/
+}
+ 
+/*nav-bar----------------------*/
 ul{
     display: flex;
     height: auto;
@@ -36,34 +36,20 @@ ul{
     align-items: center;
     list-style: none;
     padding-left: 20px;
+    flex-wrap: wrap;
     
-    
-}
-h1{
-    color: white;
 }
 
 h2{
-  
+  font-size:1.8rem;
 }
 
-section.instrucciones{
-    display: flex;
-    width: 80%;
-    margin: 0 auto;
-    background: greenyellow;
-    
-}
-main{
-    overflow: hidden;
 
-}
 
 .item-logo{
     margin-right: auto; 
     
 }
-
 
 li a{
     text-decoration-line: none;
@@ -82,9 +68,36 @@ nav li:hover{
      background:none;
    
 }
+/*instrucciones----------------------*/
+section.instrucciones {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    border: 5px solid white;
+    border-radius: 20px;
+    background:transparent;
+    font-size: 1.4rem;
+    color:black;
+    padding: 2rem;
+    align-items: start;
+  
+    
+}
+
+.rules{
+    display: block; 
+}
+.rules>li:first-child::marker{
+    content: url(hecho.png);
+}
+.rules>li::marker{
+    content: url(cerrar.png);
+}
 
 
-/*formulario*/
+/*formulario----------------------*/
 
 .enc textarea{
     width: 100%;
@@ -158,6 +171,13 @@ section.botones button{
     border-style: solid;
     margin: 0 auto
     
+}
+
+section.botones button[disabled]{
+    background: gray;
+    border-color:white;
+    cursor:auto;
+   
 }
 
 .encriptar{
