@@ -20,17 +20,25 @@ textarea[1].addEventListener("input",(e) => {
 
 botonEncritar.addEventListener('click',(e)=>{
         let valor=textarea[0].value;
+
         if(valor!=''){
             const arr=valor.split('');
+            let stream=arr.filter((word)=>validarDatos(word))
+            .reduce((acumulador,valorActual)=>{ return acumulador+conver(valorActual) },'')
+            .toString();
+            textarea[1].value=stream;    
+            
+            
             arr.forEach(element => {
-                console.log(element);
+                
             });
+            
         }
         
 });
 
-let conversion=function name(arr) {
-    let cadena='';
+let encriptar=function(arr) {
+   let cadena='';
    arr.forEach(element => {
         switch (element) {
             case 'a':
@@ -53,5 +61,48 @@ let conversion=function name(arr) {
         }
    });
    return cadena;
+}
+
+function validarDatos(str) {
+    let aux=true;
+    str.split('').forEach(element => {
+     if(!((element.charCodeAt(0)>=96 && element.charCodeAt(0)<=122)
+     ||(element.charCodeAt(0)>47 && element.charCodeAt(0)<=57)||((element.charCodeAt(0)==32))))aux=false;
+   
+ });
+    return aux;
+}
+
+console.log(validarDatos('ts '));
+
+function validar2(str) {
+    const regex = /^[a-z0-9\s]+$/i;
+    if(regex.test(str)){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function conver(str) {
+    switch (str) {
+        case 'a':
+            str='ai';
+            break;
+        case 'e':
+            str='enter';
+            break
+        case 'i':
+            str='imes';
+        case 'o':
+            str='ober';    
+            break;
+        case 'u':
+           str='ufat';
+            break;    
+        default:
+            break;
+    }
+    return str;
 }
 
