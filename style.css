@@ -203,6 +203,25 @@ textarea:focus{
   
 }
 
+/* .fixed-pos{
+    width: 25%;
+    height: 25%;
+    position: fixed;
+    background: #12372A;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+
+}
+body{
+    filter: brightness(10%);
+    background: gray 20px;
+
+    
+    
+} */
+
 
 
 

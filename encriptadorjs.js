@@ -1,9 +1,11 @@
 const textarea=document.querySelectorAll('textarea');
 const botonEncritar=document.querySelector('.encriptar')
 const botonDesencriptar=document.querySelector('.desencriptar');
+const botonBorrar=document.querySelector('.borrar');
+
 
 textarea[0].addEventListener("input",(e) => {
-    if(e.target.value!=''){
+    if(e.target.value.length!=0){
         botonEncritar.removeAttribute('disabled');
     }else{
         botonEncritar.setAttribute('disabled','');
@@ -11,57 +13,59 @@ textarea[0].addEventListener("input",(e) => {
 });
 
 textarea[1].addEventListener("input",(e) => {
-    if(e.target.value!=''){
+    if(e.target.value.length!=0){
         botonDesencriptar.removeAttribute('disabled');
     }else{
         botonDesencriptar.setAttribute('disabled','');
     }
 });
 
+
+
+
+let botones=[botonDesencriptar,botonEncritar];
+console.log(botones);
+// encriptar
 botonEncritar.addEventListener('click',(e)=>{
         let valor=textarea[0].value;
 
-        if(valor!=''){
+        if(valor.length!=0 && valor!=' '){
             const arr=valor.split('');
-            let stream=arr.filter((word)=>validarDatos(word))
+            let stream=arr.filter((letra)=>validarDatos(letra))
             .reduce((acumulador,valorActual)=>{ return acumulador+conver(valorActual) },'')
             .toString();
             textarea[1].value=stream;    
-            
-            
-            arr.forEach(element => {
-                
-            });
+            botonDesencriptar.removeAttribute('disabled');
             
         }
         
 });
+// desencriptar
+botonDesencriptar.addEventListener('click',(e)=>{
+    if(textarea[1].value.length!=0){
+        const text=textarea[1].value
+                             .match(/(ai)|(ober)|(ufat)|(imes)|(enter)|./g)
+                             .filter((letra)=>validarDatos(letra))
+                             .map((letra)=>decodificar(letra))
+                             .join('')
+                            
+        textarea[0].value=text;
+        botonEncritar.removeAttribute('disabled');
+                   
 
-let encriptar=function(arr) {
-   let cadena='';
-   arr.forEach(element => {
-        switch (element) {
-            case 'a':
-                cadena+='ai';
-                break;
-            case 'e':
-                cadena+='enter';
-                break
-            case 'i':
-                cadena+='imes';
-            case 'o':
-                cadena+='ober';    
-                break;
-            case 'u':
-                cadena+='ufat';
-                break;    
-            default:
-                cadena+=element;
-                break;
-        }
-   });
-   return cadena;
-}
+    }
+
+});
+
+
+//borrar
+botonBorrar.addEventListener('click',(e)=>{
+        textarea[0].value='',textarea[1].value='';
+        botonDesencriptar.setAttribute('disabled','');
+        botonEncritar.setAttribute('disabled','');
+});
+
+
 
 function validarDatos(str) {
     let aux=true;
@@ -76,13 +80,9 @@ function validarDatos(str) {
 console.log(validarDatos('ts '));
 
 function validar2(str) {
-    const regex = /^[a-z0-9\s]+$/i;
-    if(regex.test(str)){
-        return true;
-    }else{
-        return false;
-    }
+    return (/^[a-z0-9\s]+$/i).test(str);
 }
+
 
 function conver(str) {
     switch (str) {
@@ -106,3 +106,27 @@ function conver(str) {
     return str;
 }
 
+function decodificar(str) {
+    switch (str) {
+        case 'ai':
+            str='a';
+            break;
+        case 'ober':
+            str='o'
+            break
+        case 'enter':
+            str='e';
+            break
+        case 'imes':
+            str='i';
+            break
+        case 'ufat':
+            str='u';       
+        default:
+            break;
+    }
+    return str;
+}
+
+console.log('hoberlai s'.includes('ber',1));
+console.log('hoberlai'.match(/(ai)|(ober)|(ufat)|(imes)|(enter)|./g));
