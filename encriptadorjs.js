@@ -2,8 +2,8 @@ const textarea=document.querySelectorAll('textarea');
 const botonEncritar=document.querySelector('.encriptar')
 const botonDesencriptar=document.querySelector('.desencriptar');
 const botonBorrar=document.querySelector('.borrar');
-
-
+const botonesCopiar=[...document.querySelectorAll('.enc > button')];
+console.log(botonesCopiar);
 textarea[0].addEventListener("input",(e) => {
     if(e.target.value.length!=0){
         botonEncritar.removeAttribute('disabled');
@@ -19,9 +19,6 @@ textarea[1].addEventListener("input",(e) => {
         botonDesencriptar.setAttribute('disabled','');
     }
 });
-
-
-
 
 let botones=[botonDesencriptar,botonEncritar];
 console.log(botones);
@@ -65,6 +62,15 @@ botonBorrar.addEventListener('click',(e)=>{
         botonEncritar.setAttribute('disabled','');
 });
 
+// botones copiar
+botonesCopiar.forEach((boton, indice) => {
+    boton.addEventListener('click', () => {
+        console.log(indice);
+      const textareaCorrespondiente = textarea[indice];
+      navigator.clipboard.writeText(textareaCorrespondiente.value);
+    });
+  });
+
 
 
 function validarDatos(str) {
@@ -77,7 +83,6 @@ function validarDatos(str) {
     return aux;
 }
 
-console.log(validarDatos('ts '));
 
 function validar2(str) {
     return (/^[a-z0-9\s]+$/i).test(str);
@@ -128,5 +133,3 @@ function decodificar(str) {
     return str;
 }
 
-console.log('hoberlai s'.includes('ber',1));
-console.log('hoberlai'.match(/(ai)|(ober)|(ufat)|(imes)|(enter)|./g));
