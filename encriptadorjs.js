@@ -25,7 +25,14 @@ console.log(botones);
 // encriptar
 botonEncritar.addEventListener('click',(e)=>{
         let valor=textarea[0].value;
-
+        fun(valor)
+        .then((result) => {
+           console.log(result.status) ;
+        }).catch((err) => {
+            console.log('romper funcion');
+           
+        });
+        if(valor=='/')return;
         if(valor.length!=0 && valor!=' '){
             const arr=valor.split('');
             let stream=arr.filter((letra)=>validarDatos(letra))
@@ -39,17 +46,15 @@ botonEncritar.addEventListener('click',(e)=>{
 });
 // desencriptar
 botonDesencriptar.addEventListener('click',(e)=>{
-    if(textarea[1].value.length!=0){
+    if(textarea[1].value.length!=0 && textarea[1].value.length!=' '){
         const text=textarea[1].value
                              .match(/(ai)|(ober)|(ufat)|(imes)|(enter)|./g)
                              .filter((letra)=>validarDatos(letra))
                              .map((letra)=>decodificar(letra))
-                             .join('')
-                            
+                             .join('')                 
         textarea[0].value=text;
         botonEncritar.removeAttribute('disabled');
                    
-
     }
 
 });
@@ -133,3 +138,53 @@ function decodificar(str) {
     return str;
 }
 
+const doTask = (iterations, callback) => {
+    const numbers = [];
+  
+    for (let i = 0; i < iterations; i++) {
+      const number = 1 + Math.floor(Math.random() * 6);
+      numbers.push(number);
+      if (number === 6) {
+        callback({
+          error: true,
+          message: "Se ha sacado un 6"
+        });
+        return;
+      }
+    }
+  
+    /* Termina bucle y no se ha sacado 6 */
+    return callback(null, {
+      error: false,
+      value: numbers
+    });
+  }
+  
+  doTask(10, function(err, result) {
+    if (err) {
+      console.error("Se ha sacado un ", err.message);
+      return;
+    }
+    console.log("Tiradas correctas: ", result.value);
+  });
+
+  const fun=async (str)=>{
+        return await new Promise((resolve,reject)=>{
+            if(!validarDatos(str)){
+                reject({
+                    error:true,
+                    status:'error',
+                    cadena:''
+
+                });
+            }
+            resolve({
+                error:false,
+                status:'ok',
+                
+            });
+
+        });
+  }
+  
+    console.log('asd')      

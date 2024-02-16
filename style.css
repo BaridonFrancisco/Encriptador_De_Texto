@@ -203,24 +203,24 @@ textarea:focus{
   
 }
 
-/* .fixed-pos{
-    width: 25%;
-    height: 25%;
+.fixed-pos{
+    width: 55%;
+    height: 35%;
     position: fixed;
-    background: #12372A;
+    background: rgb(0, 184, 101);
     top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
 
 }
-body{
-    filter: brightness(10%);
-    background: gray 20px;
-
-    
-    
-} */
+.fixed-pos > p{
+    font-size: 2em;
+    color: white;
+    font-weight: 200;
+    text-align: center;
+    margin:10% auto;
+}
 
 
 
