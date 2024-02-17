@@ -3,6 +3,7 @@ const botonEncritar=document.querySelector('.encriptar')
 const botonDesencriptar=document.querySelector('.desencriptar');
 const botonBorrar=document.querySelector('.borrar');
 const botonesCopiar=[...document.querySelectorAll('.enc > button')];
+const advertencia=document.querySelector('.fixed-pos');
 console.log(botonesCopiar);
 textarea[0].addEventListener("input",(e) => {
     if(e.target.value.length!=0){
@@ -23,21 +24,17 @@ textarea[1].addEventListener("input",(e) => {
 let botones=[botonDesencriptar,botonEncritar];
 console.log(botones);
 // encriptar
-botonEncritar.addEventListener('click',(e)=>{
+botonEncritar.addEventListener('click',async(e)=>{
+        let validacion=validarDatos(textarea[0].value);
+        if(!validacion)return;
         let valor=textarea[0].value;
-        fun(valor)
-        .then((result) => {
-           console.log(result.status) ;
-        }).catch((err) => {
-            console.log('romper funcion');
-           
-        });
-        if(valor=='/')return;
-        if(valor.length!=0 && valor!=' '){
-            const arr=valor.split('');
-            let stream=arr.filter((letra)=>validarDatos(letra))
-            .reduce((acumulador,valorActual)=>{ return acumulador+conver(valorActual) },'')
-            .toString();
+        const result= await fun(valor);
+        console.log(result);
+         // todas las coincidencias para las cadenas que comiencen con un espacio solo o mas
+        if(valor.length!=0 && !(/^\s*$/g).test(valor)){
+            let stream=textarea[0].value.split('')
+                                  .reduce((acumulador,valorActual)=>{ return acumulador+conver(valorActual) },'')
+                                  .toString();
             textarea[1].value=stream;    
             botonDesencriptar.removeAttribute('disabled');
             
@@ -77,18 +74,18 @@ botonesCopiar.forEach((boton, indice) => {
   });
 
 
-
+// version sin expresion regular
 function validarDatos(str) {
     let aux=true;
     str.split('').forEach(element => {
      if(!((element.charCodeAt(0)>=96 && element.charCodeAt(0)<=122)
-     ||(element.charCodeAt(0)>47 && element.charCodeAt(0)<=57)||((element.charCodeAt(0)==32))))aux=false;
+     ||(element.charCodeAt(0)>47 && element.charCodeAt(0)<=57)||((element.charCodeAt(0)==32)) || (element.charCodeAt(0)==10)))aux=false;
    
  });
     return aux;
 }
 
-
+/*todas letras al inicio ^ en el rango a-z 0-9 \s incluye espacios */
 function validar2(str) {
     return (/^[a-z0-9\s]+$/i).test(str);
 }
@@ -168,23 +165,21 @@ const doTask = (iterations, callback) => {
     console.log("Tiradas correctas: ", result.value);
   });
 
-  const fun=async (str)=>{
-        return await new Promise((resolve,reject)=>{
-            if(!validarDatos(str)){
-                reject({
-                    error:true,
-                    status:'error',
-                    cadena:''
-
-                });
-            }
-            resolve({
-                error:false,
-                status:'ok',
-                
-            });
-
-        });
+  const fun = async (str) => {
+    if (!validarDatos(str)) {
+        return{
+            showMessage:setTimeout(()=>{
+                console.log('Ha ocurrido un error')
+                advertencia.removeAttribute('hidden');
+            },3000)
+            
+        };
+    }
+    return{
+        status:'ok',
+        message:'sin problemas'
+    };
+   
   }
-  
-    console.log('asd')      
+  console.log(advertencia);
+       
