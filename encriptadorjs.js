@@ -4,7 +4,7 @@ const botonDesencriptar=document.querySelector('.desencriptar');
 const botonBorrar=document.querySelector('.borrar');
 const botonesCopiar=[...document.querySelectorAll('.enc > button')];
 const advertencia=document.querySelector('.fixed-pos');
-console.log(botonesCopiar);
+
 textarea[0].addEventListener("input",(e) => {
     if(e.target.value.length!=0){
         botonEncritar.removeAttribute('disabled');
@@ -21,15 +21,13 @@ textarea[1].addEventListener("input",(e) => {
     }
 });
 
-let botones=[botonDesencriptar,botonEncritar];
-console.log(botones);
+
 // encriptar
 botonEncritar.addEventListener('click',async(e)=>{
-        let validacion=validarDatos(textarea[0].value);
-        if(!validacion)return;
         let valor=textarea[0].value;
         const result= await fun(valor);
-        console.log(result);
+        if(!(result.status=='ok'))return; // si el status de la promesa no es ok 
+        //if(!validacion)return;
          // todas las coincidencias para las cadenas que comiencen con un espacio solo o mas
         if(valor.length!=0 && !(/^\s*$/g).test(valor)){
             let stream=textarea[0].value.split('')
@@ -42,11 +40,12 @@ botonEncritar.addEventListener('click',async(e)=>{
         
 });
 // desencriptar
-botonDesencriptar.addEventListener('click',(e)=>{
-    if(textarea[1].value.length!=0 && textarea[1].value.length!=' '){
+botonDesencriptar.addEventListener('click', async(e)=>{
+    const result=await fun(textarea[1].value);
+    if(!(result.status=='ok'))return;
+    if(textarea[1].value.length!=0 && !(/^\s*$/g).test(textarea[1].value)){
         const text=textarea[1].value
                              .match(/(ai)|(ober)|(ufat)|(imes)|(enter)|./g)
-                             .filter((letra)=>validarDatos(letra))
                              .map((letra)=>decodificar(letra))
                              .join('')                 
         textarea[0].value=text;
@@ -89,7 +88,6 @@ function validarDatos(str) {
 function validar2(str) {
     return (/^[a-z0-9\s]+$/i).test(str);
 }
-
 
 function conver(str) {
     switch (str) {
@@ -134,45 +132,11 @@ function decodificar(str) {
     }
     return str;
 }
-
-const doTask = (iterations, callback) => {
-    const numbers = [];
-  
-    for (let i = 0; i < iterations; i++) {
-      const number = 1 + Math.floor(Math.random() * 6);
-      numbers.push(number);
-      if (number === 6) {
-        callback({
-          error: true,
-          message: "Se ha sacado un 6"
-        });
-        return;
-      }
-    }
-  
-    /* Termina bucle y no se ha sacado 6 */
-    return callback(null, {
-      error: false,
-      value: numbers
-    });
-  }
-  
-  doTask(10, function(err, result) {
-    if (err) {
-      console.error("Se ha sacado un ", err.message);
-      return;
-    }
-    console.log("Tiradas correctas: ", result.value);
-  });
-
   const fun = async (str) => {
     if (!validarDatos(str)) {
+        messageError();
         return{
-            showMessage:setTimeout(()=>{
-                console.log('Ha ocurrido un error')
-                advertencia.removeAttribute('hidden');
-            },3000)
-            
+           error:'Ha ocurrido un error'   
         };
     }
     return{
@@ -181,5 +145,15 @@ const doTask = (iterations, callback) => {
     };
    
   }
-  console.log(advertencia);
-       
+ function messageError() {
+    setTimeout(()=>{
+        console.log('Ha ocurrido un error')
+        advertencia.removeAttribute('hidden');
+        
+    },100)
+    setTimeout(()=>{
+        advertencia.setAttribute('hidden','');
+    },4000);
+   
+    
+}
