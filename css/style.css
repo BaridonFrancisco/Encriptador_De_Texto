@@ -90,10 +90,10 @@ section.instrucciones {
     display: block; 
 }
 .rules>li:first-child::marker{
-    content: url(hecho.png);
+    content: url(/images/hecho.png);
 }
 .rules>li::marker{
-    content: url(cerrar.png);
+    content: url(/images/cerrar.png);
 }
 
 
