@@ -6,7 +6,6 @@
     text-wrap:pretty;
 }
 body{
-   
     background:
     radial-gradient(
       circle at 50% 0,
@@ -90,10 +89,10 @@ section.instrucciones {
     display: block; 
 }
 .rules>li:first-child::marker{
-    content: url(/images/hecho.png);
+    content: url(../images/hecho.png);
 }
 .rules>li::marker{
-    content: url(/images/cerrar.png);
+    content: url(../images/cerrar.png);
 }
 
 
