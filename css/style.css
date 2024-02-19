@@ -7,6 +7,7 @@
     
 }
 body{
+    
     background:
     radial-gradient(
       circle at 50% 0,
@@ -244,23 +245,22 @@ textarea:focus{
       grid-column: 1;
     }
 
-    form.x section.botones{
-        color: #7E2553;
-        grid-column:1;
-    }
-  
-     section.botones button {
-      width: 100%;
-      flex-wrap: wrap;
-      flex-grow: 1;
-      
-      /* Elimina esta línea: grid-column: 0; */
+    section.botones{
+        flex-direction: column;
     }
 
-    
-  }
+  
+    section.botones button {
+      width: 100%;
+      cursor: none;
+
+    }
+    ul{
+        flex-direction: column;
+    }
+
    
-    
+}
     
    
 
