@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     text-wrap:pretty;
+    
 }
 body{
     background:
@@ -98,6 +99,20 @@ section.instrucciones {
 
 /*formulario----------------------*/
 
+
+form{
+    display: grid;
+    width: 80%;
+    grid-template-columns:repeat(2,1fr);
+    grid-template-rows: auto auto;
+    align-content: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto 10px;
+   
+    
+}
+
 .enc textarea{
     width: 100%;
     height: 500px;
@@ -116,26 +131,16 @@ section.instrucciones {
     padding-top: 20px;
     padding-bottom: 20px;
 
-    
 }
 
 
 
-form{
-    display: grid;
-    width: 80%;
-    grid-template-columns:repeat(2,1fr);
-    grid-template-rows: auto auto;
-    align-content: center;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px auto 10px;
-   
-    
-}
+
+
 
 .enc{
     position: relative;
+    
    
 }
 .enc button{
@@ -144,7 +149,8 @@ form{
     border: none;
     cursor: pointer;
     top: 85%;
-    left: 580px;
+    left: 90%;
+    
 }
 
 
@@ -227,9 +233,32 @@ textarea:focus{
 }
 
 /*Media queries*/
+/* order:3  2 1 0 */
+@media (width <= 1050px) {
+    .enc {
+      grid-column: 1;
+    }
+  
+    form.x {
+      grid-template-columns: 1fr;
+      grid-column: 1;
+    }
 
+    form.x section.botones{
+        color: #7E2553;
+        grid-column:1;
+    }
+  
+     section.botones button {
+      width: 100%;
+      flex-wrap: wrap;
+      flex-grow: 1;
+      
+      /* Elimina esta línea: grid-column: 0; */
+    }
 
-
+    
+  }
    
     
     
