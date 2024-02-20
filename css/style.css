@@ -6,6 +6,8 @@
     text-wrap:pretty;
     
 }
+
+
 body{
     background:
     radial-gradient(
@@ -243,6 +245,7 @@ textarea:focus{
     form.x {
       grid-template-columns: 1fr;
       grid-column: 1;
+      column-gap: 0;
     }
 
     section.botones{
@@ -264,7 +267,7 @@ textarea:focus{
     }
     
     li a{
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         font-weight:200;
 
     }
@@ -274,6 +277,12 @@ textarea:focus{
     }
    
 
+}
+@media(max-width:500px){ 
+    .borrar{
+        background: #7E2553;
+    }
+    
 }
    
 

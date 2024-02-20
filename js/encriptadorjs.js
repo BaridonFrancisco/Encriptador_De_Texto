@@ -24,10 +24,10 @@ textarea[1].addEventListener("input",(e) => {
 
 
 // encriptar
-botonEncritar.addEventListener('click',async(e)=>{
-        let valor=textarea[0].value;
+botonEncritar.addEventListener('click',(e)=>{
+        let valor=textarea[0].value.toLowerCase();
         document.querySelector('.atd').textContent='valor-> '+valor +validarDatos(valor);
-        const result= await fun(valor);
+        const result= fun(valor);
         if(!(result.status=='ok'))return; // si el status de la promesa no es ok 
         //if(!validacion)return;
          // todas las coincidencias para las cadenas que comiencen con un espacio solo o mas
@@ -42,8 +42,8 @@ botonEncritar.addEventListener('click',async(e)=>{
         
 });
 // desencriptar
-botonDesencriptar.addEventListener('click', async(e)=>{
-    const result=await fun(textarea[1].value);
+botonDesencriptar.addEventListener('click',(e)=>{
+    const result= fun(textarea[1].value.toLocaleLowerCase());
     if(!(result.status=='ok'))return;
     if(textarea[1].value.length!=0 && !(/^\s*$/g).test(textarea[1].value)){
         const text=textarea[1].value
@@ -134,7 +134,7 @@ function decodificar(str) {
     }
     return str;
 }
-  const fun = async (str) => {
+  const fun =(str) => {
     if (!validarDatos(str)) {
         messageError();
         return{
