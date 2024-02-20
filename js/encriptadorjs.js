@@ -26,7 +26,7 @@ textarea[1].addEventListener("input",(e) => {
 // encriptar
 botonEncritar.addEventListener('click',async(e)=>{
         let valor=textarea[0].value;
-        document.querySelector('.atd').textContent=valor;
+        document.querySelector('.atd').textContent='valor-> '+valor +validarDatos(valor);
         const result= await fun(valor);
         if(!(result.status=='ok'))return; // si el status de la promesa no es ok 
         //if(!validacion)return;
