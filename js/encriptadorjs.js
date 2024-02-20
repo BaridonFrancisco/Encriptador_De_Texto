@@ -5,6 +5,7 @@ const botonBorrar=document.querySelector('.borrar');
 const botonesCopiar=[...document.querySelectorAll('.enc > button')];
 const advertencia=document.querySelector('.fixed-pos');
 
+
 textarea[0].addEventListener("input",(e) => {
     if(e.target.value.length!=0){
         botonEncritar.removeAttribute('disabled');
@@ -25,6 +26,7 @@ textarea[1].addEventListener("input",(e) => {
 // encriptar
 botonEncritar.addEventListener('click',async(e)=>{
         let valor=textarea[0].value;
+        document.querySelector('.atd').textContent=valor;
         const result= await fun(valor);
         if(!(result.status=='ok'))return; // si el status de la promesa no es ok 
         //if(!validacion)return;

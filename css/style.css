@@ -37,7 +37,7 @@ ul{
     align-items: center;
     list-style: none;
     padding-left: 20px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     
 }
 
@@ -255,9 +255,7 @@ textarea:focus{
       cursor: none;
 
     }
-    ul{
-        flex-direction: column;
-    }
+    
 
    
 }
