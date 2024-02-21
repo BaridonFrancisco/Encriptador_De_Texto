@@ -7,12 +7,6 @@
     
 }
 
-*,
-*::before,
-*:after {
-  box-sizing: inherit;
-}
-
 
 body{
     background:
@@ -142,11 +136,6 @@ form{
 
 }
 
-
-
-
-
-
 .enc{
     position: relative;
     
@@ -255,14 +244,19 @@ textarea:focus{
     }
 
     section.botones{
+        display: flex;
         flex-direction: column;
+        grid-column: span 1;
+    }
+    .botenes button{
+        order: initial
     }
   
     section.botones button {
       width: 100%;
       cursor: none;
 
-    }
+    }   
 
 }
 @media ( width <= 768px){
@@ -280,13 +274,11 @@ textarea:focus{
     
     .item-logo{
         transform: scale(0.9);
-    }
-   
+    }  
 
 }
 @media(width<500px){ 
 
-   
 
     nav li{
         width: 100px;
@@ -322,10 +314,15 @@ textarea:focus{
         font-size: 1.5;
         font-weight: lighter;
     }
-    .borrar{
-        background: #7E2553;
+
+    .enc textarea{
+        height: 250px;
     }
-    
+    .enc button{
+        top: 80%;
+        left: 80%;
+    }
+   
 }
    
 
