@@ -7,6 +7,12 @@
     
 }
 
+*,
+*::before,
+*:after {
+  box-sizing: inherit;
+}
+
 
 body{
     background:
@@ -278,7 +284,44 @@ textarea:focus{
    
 
 }
-@media(max-width:500px){ 
+@media(width<500px){ 
+
+   
+
+    nav li{
+        width: 100px;
+       
+    }
+
+    ul{
+        align-items: center;
+        justify-content: center;
+    }
+    
+    li a{
+        font-size: 1rem;
+        font-weight:200;
+
+    }
+
+    .item-logo{
+        margin: 0;
+        transform: scale(0.6);
+    }
+   
+    section.instrucciones {
+        font-size: 1rem;
+        color:black;
+    }
+
+    .instrucciones h2{
+        font-size: 1.5rem;
+       font-weight: bolder;
+    }
+    .instrucciones h3{
+        font-size: 1.5;
+        font-weight: lighter;
+    }
     .borrar{
         background: #7E2553;
     }
